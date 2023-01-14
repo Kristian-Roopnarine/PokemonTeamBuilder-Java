@@ -10,6 +10,11 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTable;
 import com.gargoylesoftware.htmlunit.html.HtmlTableCell;
 import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.IOException;
 
 public class App 
@@ -20,11 +25,17 @@ public class App
         final String URL = "https://pokemondb.net/pokedex/all";
         webClient.getOptions().setJavaScriptEnabled(false);
         webClient.getOptions().setCssEnabled(false);
+        String outputString = "";
         try {
             HtmlPage page = webClient.getPage(URL);
             HtmlTable pokedexTable = page.getHtmlElementById("pokedex");
             for (final HtmlTableRow row: pokedexTable.getRows()){
-                System.out.println(row.getTextContent());
+                String rowString = "";
+                for(final HtmlTableCell cell: row.getCells()){
+                    rowString += cell.getTextContent() + ",";
+
+                }
+                outputString += rowString + "\n";
                 /*
                 for (final HtmlTableCell cell: row.getCells()){
                     System.out.println(cell.asNormalizedText());
@@ -34,5 +45,13 @@ public class App
         } catch (IOException e ){
             System.out.println("Error : " + e);
         }
+
+        final Path saveFilePath = Paths.get(System.getProperty("user.dir") + "/test_output.txt");
+        System.out.println(saveFilePath.toString());
+        try {
+            Files.writeString(saveFilePath, outputString, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            System.out.println("Error saving data : " + e);
+        } 
     }
 }
