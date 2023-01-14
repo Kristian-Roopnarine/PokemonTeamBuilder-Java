@@ -7,6 +7,9 @@ package com.pokemonteambuilder.app;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlTable;
+import com.gargoylesoftware.htmlunit.html.HtmlTableCell;
+import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
 import java.io.IOException;
 
 public class App 
@@ -19,7 +22,15 @@ public class App
         webClient.getOptions().setCssEnabled(false);
         try {
             HtmlPage page = webClient.getPage(URL);
-            System.out.println(page.asXml());
+            HtmlTable pokedexTable = page.getHtmlElementById("pokedex");
+            for (final HtmlTableRow row: pokedexTable.getRows()){
+                System.out.println(row.getTextContent());
+                /*
+                for (final HtmlTableCell cell: row.getCells()){
+                    System.out.println(cell.asNormalizedText());
+                }
+                */
+            }
         } catch (IOException e ){
             System.out.println("Error : " + e);
         }
