@@ -10,7 +10,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTable;
 import com.gargoylesoftware.htmlunit.html.HtmlTableCell;
 import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
-import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,18 +35,12 @@ public class App
 
                 }
                 outputString += rowString + "\n";
-                /*
-                for (final HtmlTableCell cell: row.getCells()){
-                    System.out.println(cell.asNormalizedText());
-                }
-                */
             }
         } catch (IOException e ){
             System.out.println("Error : " + e);
         }
 
         final Path saveFilePath = Paths.get(System.getProperty("user.dir") + "/test_output.txt");
-        System.out.println(saveFilePath.toString());
         try {
             Files.writeString(saveFilePath, outputString, StandardCharsets.UTF_8);
         } catch (IOException e) {
