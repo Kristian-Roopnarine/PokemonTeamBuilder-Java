@@ -1,1 +1,4 @@
 /Users/kristianroopnarine/Desktop/Github/TeamBuilder/team-builder/src/main/java/com/pokemonteambuilder/app/App.java
+/Users/kristianroopnarine/Desktop/Github/TeamBuilder/team-builder/src/main/java/com/pokemonteambuilder/app/services/FileReaderService.java
+/Users/kristianroopnarine/Desktop/Github/TeamBuilder/team-builder/src/main/java/com/pokemonteambuilder/app/services/FileWriterService.java
+/Users/kristianroopnarine/Desktop/Github/TeamBuilder/team-builder/src/main/java/com/pokemonteambuilder/app/services/PokemonDbScraperService.java
