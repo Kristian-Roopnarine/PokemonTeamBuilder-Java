@@ -35,7 +35,7 @@ public class PokemonDbScraperService {
             List<HtmlTableCell> currCells = currRow.getCells();
             String[] cellStrData = new String[currCells.size()];
             for(int j = 0; j < currCells.size(); j++){
-                cellStrData[j] = currCells.get(j).getTextContent();
+                cellStrData[j] = currCells.get(j).getTextContent().trim();
             }
             String rowString = String.join(",", cellStrData);
             outputString += rowString + "\n";
